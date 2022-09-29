@@ -1,0 +1,6 @@
+# Configuração geral do bot
+Config:
+  token: "OTgxMjEzNDM4ODYyODM5ODU4.G4IEQv.sszZ-lMKxI2RcpW5b5c24NZkhEHnaj-0e4n3l8"
+  tag: "&3[H_Bot]"
+  activity: "{online}/{max}"
+  guildID: "447519066257883147"

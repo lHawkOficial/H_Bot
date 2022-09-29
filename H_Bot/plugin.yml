@@ -1,0 +1,8 @@
+name: H_Bot
+version: 0.1
+author: lHawk_
+depend: [JDA]
+main: me.hbot.Core
+description: Hyzard Manager
+commands:
+  bot:
