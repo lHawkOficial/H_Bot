@@ -27,6 +27,7 @@ public class Bot {
 	private JDA jda;
 	private JDABuilder builder;
 	private Guild guild;
+	private boolean initialized = false;
 	
 	public Bot() {
 
@@ -44,10 +45,12 @@ public class Bot {
 			jda.awaitReady();
 			jda.addEventListener(new ListenersJDA());
 			guild = jda.getGuildById(Config.get().getGuildID());
+			initialized = true;
 			updateActivity();
 			
 		} catch (Exception e) {
-			e.printStackTrace();
+			initialized = false;
+			Core.getInstance().sendConsole(Core.getInstance().getTag() + " &cO H_Bot foi desligado, ignorando JDA.");
 		}
 		
 	}
@@ -57,12 +60,14 @@ public class Bot {
 	}
 	
 	public void updateActivity() {
+		if (!initialized) return;
 		Bukkit.getScheduler().runTaskAsynchronously(Core.getInstance(), ()-> {
-			jda.getPresence().setActivity(Activity.playing(Config.get().getActivity().replace("{online}", String.valueOf(Bukkit.getOnlinePlayers().size())).replace("{max}", String.valueOf(Bukkit.getMaxPlayers()))));
+			jda.getPresence().setActivity(Activity.playing(Bukkit.hasWhitelist() ? "[manutenção]" :  Config.get().getActivity().replace("{online}", String.valueOf(Bukkit.getOnlinePlayers().size())).replace("{max}", String.valueOf(Bukkit.getMaxPlayers()))));
 		});
 	}
 	
 	public void stop() {
+		if (!initialized) return;
 		jda.shutdownNow();
 	}
 	

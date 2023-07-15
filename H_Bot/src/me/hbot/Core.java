@@ -29,6 +29,7 @@ public class Core extends JavaPlugin {
 	public void onEnable() {
 		instance = this;
 		saveDefaultConfig();
+		if(getConfig().getString("Config.token").isEmpty()) return;
 		reloadPlugin();
 		new PlayersListeners();
 		new CommandBot();

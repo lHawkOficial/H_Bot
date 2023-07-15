@@ -29,7 +29,7 @@ public class ListenersJDA extends ListenerAdapter {
 		if (e.getAuthor().isBot()) return;
 		if (!e.isFromGuild()) return;
 		if (e.getChannelType() != ChannelType.TEXT) return;
-		TextChannel channel = (TextChannel) e.getChannel();
+		TextChannel channel = e.getTextChannel();
 		Member member = e.getMember();
 		String[] args = e.getMessage().getContentStripped().split(" ");
 		if (args[0].startsWith("/")) {

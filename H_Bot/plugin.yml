@@ -1,5 +1,5 @@
 name: H_Bot
-version: 0.1
+version: 0.4
 author: lHawk_
 depend: [JDA]
 main: me.hbot.Core
